@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const cron = require('node-cron');
 require("dotenv").config(); //to start process from .env file
 const {Discord, EmbedBuilder, Client, Intents, GatewayIntentBits}=require("discord.js");
 const schedule = require('node-schedule');
@@ -59,7 +59,7 @@ client.on("messageCreate", message => {
     }
 })
 
-schedule.scheduleJob('0 17 * * 5', () => { 
+cron.schedule('0 17 * * 5', () => { 
     var servers = client.guilds.cache.map(guild => guild);
     var bandServer = servers[0]
     var practiceLogChannel= client.channels.cache.find(channel => channel.name === "practice-logs-are-due").id;
